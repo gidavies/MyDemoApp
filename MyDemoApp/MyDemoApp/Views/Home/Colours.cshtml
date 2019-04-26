@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewData["Title"] = "Colours";
+}
+
+@model MyDemoApp.Web.Models.ColoursModel;
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<h1>Colours</h1>
+
+<div id="idBalls">
+</div>
+
+<br />
+
+<form asp-action="Colours" asp-controller="Home">
+    <label asp-for="ColoursAPIUrl">Colours API URL:</label>
+    <input asp-for="ColoursAPIUrl" placeholder="Colours API URL goes here..." />
+    <br />
+    <input type="submit" value="Update" />
+</form>
+
+<button id="idButStart" onclick="doStart()">Start</button>&nbsp;&nbsp;
+
+<script>
+    
+    var APIUrl = decodeURIComponent(@Json.Serialize(Model.ColoursAPIUrl));
+    var iBalls = 500;
+    var iMaxPollTimer = 60000;
+
+    function ColorTrigger(x) {
+
+        $.ajax({
+            url: APIUrl,
+            success: function (data) {
+                $('#idBall' + x.toString()).css({ fill: data });
+
+                var iDelay = Math.ceil(Math.random() * iMaxPollTimer);
+                setTimeout(function (xx) { ColorTrigger(xx) }, iDelay, x);
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert('Error: ' + XMLHttpRequest.status + " " + errorThrown + ' using URL: ' + APIUrl + ' Details: ' + XMLHttpRequest.responseText)
+            }
+        });
+    }
+
+    function doStart() {
+
+        //$("#idButStart").hide();
+
+        var iDelay = 0;
+        for (var i = 0; i < iBalls; i++) {
+            iDelay = Math.ceil(Math.random() * iMaxPollTimer);
+            setTimeout(function (xx) { ColorTrigger(xx) }, iDelay, i);
+        }
+    }
+
+    function doDefaultReady() {
+        var vHTML = "";
+
+        for (var i = 0; i < iBalls; i++) {
+            vHTML += "<svg height='30' width='30'><circle id='idBall" + i.toString() + "' cx='15' cy='15' r='12' stroke='black' stroke-width='1' fill='white' /></svg>";
+        }
+
+        $("#idBalls").append(vHTML);
+
+    }
+
+    $(document).ready(function () {
+        doDefaultReady();
+    });
+
+</script>

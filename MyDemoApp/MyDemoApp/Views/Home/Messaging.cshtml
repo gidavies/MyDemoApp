@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "Messaging";
+}
+
+@model MyDemoApp.Web.Models.MessagingModel
+
+<h1>Messaging</h1>
+
+<form asp-action="Messaging" asp-controller="Home">
+    <label asp-for="SBConnString">Service Bus Connection String:</label>
+    <input asp-for="SBConnString" placeholder="Your connection string goes here..." />
+    <br />
+    <label asp-for="SBQueue">Service Bus Queue:</label>
+    <input asp-for="SBQueue" placeholder="Your queue name goes here..." />
+    <br />
+    <label asp-for="SBMessage">Message:</label>
+    <input asp-for="SBMessage" placeholder="Your message goes here..." />
+    <br />        
+    <input type="submit" value="Send message to Azure Service Bus" />
+</form>

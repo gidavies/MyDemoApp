@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MyDemoApp.Models;
+using MyDemoApp.Web.Models;
 
 namespace MyDemoApp.Controllers
 {
@@ -18,6 +19,23 @@ namespace MyDemoApp.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Colours(ColoursModel model)
+        {
+            ColoursModel coloursMod = new ColoursModel
+            {
+                ColoursAPIUrl = model.ColoursAPIUrl
+            };
+            return View(coloursMod);
+        }
+
+        public IActionResult Messaging(MessagingModel model)
+        {
+            Task t = new MessagingModel().SendMessageAsync(model);
+
+            return View();
+            //return Content($"Message {model.SBMessage} sent");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyDemoApp.Web.Models;
 
-namespace MyDemoApp.BVT
+namespace MyDemoApp.UnitTests
 {
     [TestClass]
     public class WebUnitTests

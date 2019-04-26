@@ -5,6 +5,7 @@ using MyDemoApp.Web.Models;
 
 namespace MyDemoApp.UnitTests
 {
+    // Some simple unit tests to check the controllers
     [TestClass]
     public class WebUnitTests
     {

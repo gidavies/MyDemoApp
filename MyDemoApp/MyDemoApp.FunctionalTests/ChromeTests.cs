@@ -60,7 +60,7 @@ namespace MyDemoApp.FunctionalTests
                 driver = GetChromeDriver();
                 var webAppUrl = testContext.Properties["webAppUrl"].ToString();
                 driver.Navigate().GoToUrl(webAppUrl);
-                RemoteWebElement titleElement = (RemoteWebElement)driver.FindElementByTagName("H1");
+                RemoteWebElement titleElement = (RemoteWebElement)driver.FindElementById("HomeHeading");
 
                 Assert.AreEqual(expectedHeading, titleElement, "Expected heading to be '" + expectedHeading + "'");
             }
@@ -77,7 +77,7 @@ namespace MyDemoApp.FunctionalTests
             {
                 string expectedTitle = "Colours - Giles Davies";
                 driver = GetChromeDriver();
-                var webAppUrl = testContext.Properties["webAppUrl"].ToString();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString() + "/Home/Colours";
                 driver.Navigate().GoToUrl(webAppUrl);
                 Assert.AreEqual(expectedTitle, driver.Title, "Expected title to be '" + expectedTitle + "'");
             }
@@ -94,7 +94,7 @@ namespace MyDemoApp.FunctionalTests
             {
                 string expectedTitle = "Messaging - Giles Davies";
                 driver = GetChromeDriver();
-                var webAppUrl = testContext.Properties["webAppUrl"].ToString();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString() + "/Home/Messaging";
                 driver.Navigate().GoToUrl(webAppUrl);
                 Assert.AreEqual(expectedTitle, driver.Title, "Expected title to be '" + expectedTitle + "'");
             }
@@ -111,7 +111,7 @@ namespace MyDemoApp.FunctionalTests
             {
                 string expectedTitle = "Privacy Page - Giles Davies";
                 driver = GetChromeDriver();
-                var webAppUrl = testContext.Properties["webAppUrl"].ToString();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString() + "/Home/Privacy";
                 driver.Navigate().GoToUrl(webAppUrl);
                 Assert.AreEqual(expectedTitle, driver.Title, "Expected title to be '" + expectedTitle + "'");
             }

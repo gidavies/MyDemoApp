@@ -60,9 +60,9 @@ namespace MyDemoApp.FunctionalTests
                 driver = GetChromeDriver();
                 var webAppUrl = testContext.Properties["webAppUrl"].ToString();
                 driver.Navigate().GoToUrl(webAppUrl);
-                RemoteWebElement titleElement = (RemoteWebElement)driver.FindElementById("HomeHeading");
+                RemoteWebElement headingElement = (RemoteWebElement)driver.FindElementById("HomeHeading");
 
-                Assert.AreEqual(expectedHeading, titleElement, "Expected heading to be '" + expectedHeading + "'");
+                Assert.AreEqual(expectedHeading, headingElement.Text, "Expected heading to be '" + expectedHeading + "'");
             }
             finally
             {
@@ -109,7 +109,7 @@ namespace MyDemoApp.FunctionalTests
         {
             try
             {
-                string expectedTitle = "Privacy Page - Giles Davies";
+                string expectedTitle = "Privacy Policy - Giles Davies";
                 driver = GetChromeDriver();
                 var webAppUrl = testContext.Properties["webAppUrl"].ToString() + "/Home/Privacy";
                 driver.Navigate().GoToUrl(webAppUrl);

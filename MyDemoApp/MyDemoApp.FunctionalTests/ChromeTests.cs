@@ -49,5 +49,76 @@ namespace MyDemoApp.FunctionalTests
                 driver.Quit();
             }
         }
+
+        [TestMethod]
+        public void HomePageHeadingTest()
+        {
+            try
+            {
+                string expectedHeading = "My Resources";
+
+                driver = GetChromeDriver();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString();
+                driver.Navigate().GoToUrl(webAppUrl);
+                RemoteWebElement titleElement = (RemoteWebElement)driver.FindElementByTagName("H1");
+
+                Assert.AreEqual(expectedHeading, titleElement, "Expected heading to be '" + expectedHeading + "'");
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
+
+        [TestMethod]
+        public void ColoursPageTitleTest()
+        {
+            try
+            {
+                string expectedTitle = "Colours - Giles Davies";
+                driver = GetChromeDriver();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString();
+                driver.Navigate().GoToUrl(webAppUrl);
+                Assert.AreEqual(expectedTitle, driver.Title, "Expected title to be '" + expectedTitle + "'");
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
+
+        [TestMethod]
+        public void MessagingPageTitleTest()
+        {
+            try
+            {
+                string expectedTitle = "Messaging - Giles Davies";
+                driver = GetChromeDriver();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString();
+                driver.Navigate().GoToUrl(webAppUrl);
+                Assert.AreEqual(expectedTitle, driver.Title, "Expected title to be '" + expectedTitle + "'");
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
+
+        [TestMethod]
+        public void PrivacyPageTitleTest()
+        {
+            try
+            {
+                string expectedTitle = "Privacy Page - Giles Davies";
+                driver = GetChromeDriver();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString();
+                driver.Navigate().GoToUrl(webAppUrl);
+                Assert.AreEqual(expectedTitle, driver.Title, "Expected title to be '" + expectedTitle + "'");
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
     }
 }

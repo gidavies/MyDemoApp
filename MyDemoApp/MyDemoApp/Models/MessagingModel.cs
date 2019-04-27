@@ -26,7 +26,7 @@ namespace MyDemoApp.Web.Models
             }
             catch (Exception ex)
             {
-                
+                //ToDo: Handle exceptions
             }
 
         }

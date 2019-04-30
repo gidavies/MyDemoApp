@@ -29,7 +29,8 @@
 
 <script>
     
-    var APIUrl = decodeURIComponent(@Json.Serialize(Model.ColoursAPIUrl));
+    var rawURL = @Json.Serialize(Model.ColoursAPIUrl);
+    var APIUrl = decodeURIComponent(rawURL);
     var iBalls = 500;
     var iMaxPollTimer = 60000;
 

@@ -105,13 +105,13 @@ namespace MyDemoApp.FunctionalTests
         }
 
         [TestMethod]
-        public void PrivacyPageTitleTest()
+        public void AboutPageTitleTest()
         {
             try
             {
-                string expectedTitle = "Privacy Policy - Giles Davies";
+                string expectedTitle = "About - Giles Davies";
                 driver = GetChromeDriver();
-                var webAppUrl = testContext.Properties["webAppUrl"].ToString() + "/Home/Privacy";
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString() + "/Home/About";
                 driver.Navigate().GoToUrl(webAppUrl);
                 Assert.AreEqual(expectedTitle, driver.Title, "Expected title to be '" + expectedTitle + "'");
             }

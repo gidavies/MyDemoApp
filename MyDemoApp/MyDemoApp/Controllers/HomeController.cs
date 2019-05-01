@@ -16,9 +16,9 @@ namespace MyDemoApp.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
         {
-            return View();
+            return View(new AboutModel());
         }
 
         public IActionResult Colours(ColoursModel model)

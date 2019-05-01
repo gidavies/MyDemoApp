@@ -18,10 +18,10 @@ namespace MyDemoApp.UnitTests
         }
 
         [TestMethod]
-        public void PrivacyPageTest()
+        public void AboutPageTest()
         {
             var controller = new HomeController();
-            IActionResult result = controller.Privacy();
+            IActionResult result = controller.About();
             Assert.AreEqual(null, controller.ViewData["Message"]);
         }
 

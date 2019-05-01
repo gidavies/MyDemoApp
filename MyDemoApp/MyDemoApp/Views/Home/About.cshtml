@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+
+@model MyDemoApp.Web.Models.AboutModel
+
+<h1>@ViewData["Title"]</h1>
+
+<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+
+<div class="row">
+
+    <div class="flex-column col-xl-auto groundedcard">
+        <div class="gcontainer">
+            <h2 class="h2">Me</h2>
+            <p>Email: <a href="mailto://giles.davies@microsoft.com">giles.davies@microsoft.com</a></p>
+            <div class="LI-profile-badge" data-version="v1" data-size="medium" data-locale="en_US" data-type="horizontal" data-theme="light" data-vanity="gilesdavies"><a class="LI-simple-link" href='https://uk.linkedin.com/in/gilesdavies?trk=profile-badge'>Giles Davies</a></div>
+        </div>
+    </div>
+
+    <div class="flex-column col-xl-auto groundedcard">
+        <div class="gcontainer">
+            <h2 class="h2">Pipeline status</h2>
+
+            <div class="gtable">
+                <div class="gtableRow">
+                    <div class="gcell_small"><strong>Stage</strong></div>
+                    <div class="gcell_standard"><strong>Status</strong></div>
+                </div>
+                <div class="gtableRow">
+                    <div class="gcell_small">Build</div>
+                    <div class="gcell_standard"><img src="https://dev.azure.com/gidavies/MyDemoApp/_apis/build/status/MyDemoApp-Classic.CI" alt="Build Status" /></div>
+                </div>
+                <div class="gdtableRow">
+                    <div class="gcell_small">Dev</div>
+                    <div class="gcell_standard"><img src="https://vsrm.dev.azure.com/gidavies/_apis/public/Release/badge/f0953671-c614-4fa0-9bca-3c24db16a29f/1/1" alt="Dev stage pipeline status" /></div>
+                </div>
+                <div class="gdtableRow">
+                    <div class="gcell_small">QA</div>
+                    <div class="gcell_standard"><img src="https://vsrm.dev.azure.com/gidavies/_apis/public/Release/badge/f0953671-c614-4fa0-9bca-3c24db16a29f/1/2" alt="QA stage pipeline status" /></div>
+                </div>
+                <div class="gdtableRow">
+                    <div class="gcell_small">Prod</div>
+                    <div class="gcell_standard"><img src="https://vsrm.dev.azure.com/gidavies/_apis/public/Release/badge/f0953671-c614-4fa0-9bca-3c24db16a29f/1/3" alt="Production stage pipeline status" /></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="flex-column col-xl-auto groundedcard">
+        <div class="gcontainer">
+            <h2 class="h2">This app</h2>
+            <p>Built with <a target="_blank" href="https://docs.microsoft.com/aspnet/core">ASP.NET Core</a></p>
+            <p><a target="_blank" href="https://github.com/gidavies/MyDemoApp">GitHub source code repo</a></p>
+            <p><a target="_blank" href="https://dev.azure.com/gidavies/MyDemoApp">Azure DevOps project</a></p>
+            
+            <p>Deployed to Azure App Service</p>
+            <p>Running on: @Model.OSVersion</p>
+            
+        </div>
+    </div>
+
+</div>

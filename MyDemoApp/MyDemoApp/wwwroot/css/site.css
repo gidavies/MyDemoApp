@@ -91,3 +91,20 @@ body {
         width: 100%;
         clear: both;
     }
+
+.gtable {
+    display: block;
+}
+
+.grow {
+    display: block;
+}
+
+.gcell_small {
+    display: inline-block; width: 60px;
+}
+
+.gcell_standard {
+    display: inline-block;
+    width: 170px;
+}

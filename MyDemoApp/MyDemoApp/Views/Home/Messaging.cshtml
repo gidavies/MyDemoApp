@@ -7,15 +7,24 @@
 
 <h1>Messaging</h1>
 
-<form asp-action="Messaging" asp-controller="Home">
-    <label asp-for="SBConnString">Service Bus Connection String:</label>
-    <input asp-for="SBConnString" placeholder="Your connection string goes here..." />
-    <br />
-    <label asp-for="SBQueue">Service Bus Queue:</label>
-    <input asp-for="SBQueue" placeholder="Your queue name goes here..." />
-    <br />
-    <label asp-for="SBMessage">Message:</label>
-    <input asp-for="SBMessage" placeholder="Your message goes here..." />
-    <br />        
-    <input type="submit" value="Send message to Azure Service Bus" />
-</form>
+<div class="row">
+    <div class="flex-column col-xl-auto groundedcard ginputcontainer">
+        <div class="gcontainer">
+            <form asp-action="Messaging" asp-controller="Home">
+                <label asp-for="SBConnString">Service Bus Connection String:</label>
+                <input asp-for="SBConnString" placeholder="Your connection string goes here..." />
+                
+                <label asp-for="SBQueue">Service Bus Queue:</label>
+                <input asp-for="SBQueue" placeholder="Your queue name goes here..." />
+                
+                <label asp-for="SBMessage">Message:</label>
+                <input asp-for="SBMessage" placeholder="Your message goes here..." />
+                <br />
+                <br />
+                <input type="submit" value="Send to Azure Service Bus Queue" />
+            </form>
+        </div>
+    </div>
+</div>
+
+

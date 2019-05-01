@@ -14,18 +14,27 @@
 
 <br />
 
-<form asp-action="Colours" asp-controller="Home">
-    <label asp-for="ColoursAPIUrl">Colours API URL:</label>
-    <input asp-for="ColoursAPIUrl" placeholder="Colours API URL goes here..." />
-    <br />
-    <input type="submit" value="Update" />
-</form>
-
-<button id="idButStart" onclick="doStart()">Start</button>&nbsp;&nbsp;
-
-<p>
-    With thanks to <a href="https://github.com/markharrisonuk/Lab_Functions/blob/master/functions-1.md">Mark Harrison's excellent functions lab</a>. 
-</p>
+<div class="row">
+    <div class="flex-column col-xl-auto groundedcard ginputcontainer">
+        <div class="gcontainer">
+            <form asp-action="Colours" asp-controller="Home">
+                <label asp-for="ColoursAPIUrl">Colours API URL:</label>
+                <input asp-for="ColoursAPIUrl" placeholder="Colours API URL goes here..." />
+                <br />
+                <br />
+                <input type="submit" value="Update" />
+            </form>
+        </div>
+    </div>
+    <div class="flex-column col-xl-auto groundedcard ginputcontainer">
+        <div class="gcontainer">
+            <button id="idButStart" onclick="doStart()">Start</button>&nbsp;&nbsp;
+            <p>
+                With thanks to <a href="https://github.com/markharrisonuk/Lab_Functions/blob/master/functions-1.md">Mark Harrison's excellent functions lab</a>.
+            </p>
+        </div>
+    </div>
+</div>
 
 <script>
     

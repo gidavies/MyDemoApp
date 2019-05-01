@@ -55,7 +55,7 @@ namespace MyDemoApp.FunctionalTests
         {
             try
             {
-                string expectedHeading = "My Favourite Resources";
+                string expectedHeading = "My Resources";
 
                 driver = GetChromeDriver();
                 var webAppUrl = testContext.Properties["webAppUrl"].ToString();

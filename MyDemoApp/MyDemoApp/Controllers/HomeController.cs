@@ -32,10 +32,16 @@ namespace MyDemoApp.Controllers
 
         public IActionResult Messaging(MessagingModel model)
         {
-            Task t = new MessagingModel().SendMessageAsync(model);
+            try
+            {
+                new MessagingModel().SendMessage(model);
+                return View();
+            }
+            catch (Exception)
+            {
 
-            return View();
-            //return Content($"Message {model.SBMessage} sent");
+                return RedirectToAction("Error");
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -11,24 +11,27 @@ namespace MyDemoApp.Web.Models
     {
         public string SBConnString { get; set; }
         public string SBQueue { get; set; }
+        public string SBTopic { get; set; }
         public string SBMessage { get; set; }
+        public bool SBIsQueue { get; set; }
 
-        public async Task SendMessageAsync(MessagingModel model)
+        public void SendMessage(MessagingModel model)
         {
-            try
-            {
-                IQueueClient queueClient = new QueueClient(model.SBConnString, model.SBQueue);
+            _ =  model.SBIsQueue ? SendMessageToQueue(model) : SendMessageToTopic(model);
+        }
 
-                // Create the message to send to the queue.
-                var message = new Message(Encoding.UTF8.GetBytes(model.SBMessage));
+        private async Task SendMessageToQueue(MessagingModel model)
+        {
+            IQueueClient queueClient = new QueueClient(model.SBConnString, model.SBQueue);
+            var message = new Message(Encoding.UTF8.GetBytes(model.SBMessage));
+            await queueClient.SendAsync(message);
+        }
 
-                await queueClient.SendAsync(message);
-            }
-            catch (Exception ex)
-            {
-                //ToDo: Handle exceptions
-            }
-
+        private async Task SendMessageToTopic(MessagingModel model)
+        {
+            ITopicClient topicClient = new TopicClient(model.SBConnString, model.SBTopic);
+            var message = new Message(Encoding.UTF8.GetBytes(model.SBMessage));
+            await topicClient.SendAsync(message);
         }
     }
 }

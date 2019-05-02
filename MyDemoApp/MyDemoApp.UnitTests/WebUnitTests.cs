@@ -29,8 +29,7 @@ namespace MyDemoApp.UnitTests
         public void ColoursPageTest()
         {
             var controller = new HomeController();
-            var colourModel = new ColoursModel();
-            IActionResult result = controller.Colours(colourModel);
+            IActionResult result = controller.Colours();
             Assert.AreEqual(null, controller.ViewData["Message"]);
         }
 

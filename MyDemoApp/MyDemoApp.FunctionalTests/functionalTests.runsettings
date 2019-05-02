@@ -3,7 +3,7 @@
 
   <!-- Parameters used by tests at runtime -->  
   <TestRunParameters>  
-    <Parameter name="webAppUrl" value="https://localhost/" />  
+    <Parameter name="webAppUrl" value="https://localhost" />  
   </TestRunParameters>  
 
 </RunSettings> 

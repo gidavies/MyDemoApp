@@ -14,21 +14,31 @@
 
 <br />
 
-<form asp-action="Colours" asp-controller="Home">
-    <label asp-for="ColoursAPIUrl">Colours API URL:</label>
-    <input asp-for="ColoursAPIUrl" placeholder="Colours API URL goes here..." />
-    <br />
-    <input type="submit" value="Update" />
-</form>
+<div class="row">
+    <div class="flex-column col-xl-auto groundedcard">
+        <div class="gcontainer">
+            <form asp-action="Colours" asp-controller="Home">
+                <label asp-for="ColoursAPIUrl">Colours API URL:</label>
+                <input asp-for="ColoursAPIUrl" placeholder="Colours API URL goes here..." />
+                <br />
+                <input type="submit" value="Update" />
+            </form>
+        </div>
+    </div>
 
-<button id="idButStart" onclick="doStart()">Start</button>&nbsp;&nbsp;
+    <div class="flex-column col-xl-auto groundedcard">
+        <div class="gcontainer">
+            <button id="idButStart" onclick="doStart()">Start</button>
+            <p>
+                With thanks to <a href="https://github.com/markharrisonuk/Lab_Functions/blob/master/functions-1.md">Mark Harrison's excellent functions lab</a>.
+            </p>
+        </div>
+    </div>
 
-<p>
-    With thanks to <a href="https://github.com/markharrisonuk/Lab_Functions/blob/master/functions-1.md">Mark Harrison's excellent functions lab</a>. 
-</p>
+</div>
 
 <script>
-    
+
     var rawURL = @Json.Serialize(Model.ColoursAPIUrl);
     var APIUrl = decodeURIComponent(rawURL);
     var iBalls = 500;

@@ -3,6 +3,8 @@
     ViewData["Title"] = "Colours";
 }
 
+@model MyDemoApp.Web.Models.ColoursModel;
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <h1>Colours</h1>
@@ -12,28 +14,23 @@
 
 <br />
 
-<div class="row">
-    <div class="flex-column col-xl-auto groundedcard ginputcontainer">
-        <div class="gcontainer">
-            
-            <form name="configform" action="" method="get">
-                Colours API URL:
-                <input type="text" name="urltoapi" value="" />
-                <p>
-                    <input type="button" name="idButStart" value="Start" onclick="doStart(this.form)" />
-                </p>  
-            </form>
-            
-            <p>
-                With thanks to <a href="https://github.com/markharrisonuk/Lab_Functions/blob/master/functions-1.md">Mark Harrison's excellent functions lab</a>.
-            </p>
-        </div>
-    </div>
-</div>
+<form asp-action="Colours" asp-controller="Home">
+    <label asp-for="ColoursAPIUrl">Colours API URL:</label>
+    <input asp-for="ColoursAPIUrl" placeholder="Colours API URL goes here..." />
+    <br />
+    <input type="submit" value="Update" />
+</form>
+
+<button id="idButStart" onclick="doStart()">Start</button>&nbsp;&nbsp;
+
+<p>
+    With thanks to <a href="https://github.com/markharrisonuk/Lab_Functions/blob/master/functions-1.md">Mark Harrison's excellent functions lab</a>. 
+</p>
 
 <script>
-
-    var APIUrl = "";
+    
+    var rawURL = @Json.Serialize(Model.ColoursAPIUrl);
+    var APIUrl = decodeURIComponent(rawURL);
     var iBalls = 500;
     var iMaxPollTimer = 60000;
 
@@ -46,25 +43,18 @@
 
                 var iDelay = Math.ceil(Math.random() * iMaxPollTimer);
                 setTimeout(function (xx) { ColorTrigger(xx) }, iDelay, x);
+
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                var errDetails = "Error using " + APIUrl + "\n";
-                errDetails += "Error Thrown: " + errorThrown + "\n";
-                errDetails += "Status: " + textStatus + "\n";
-                //errDetails += "Status Code: " + XMLHttpRequest.statusCode + "\n";
-                errDetails += "Status: " + XMLHttpRequest.status + "\n";
-                errDetails += "Status Text: " + XMLHttpRequest.statusText + "\n";
-                errDetails += "Response Text: " + XMLHttpRequest.responseText;
-                
-                alert(errDetails)
+                alert('Error: ' + XMLHttpRequest.status + " " + errorThrown + ' using URL: ' + APIUrl + ' Details: ' + XMLHttpRequest.responseText)
             }
         });
     }
 
-    function doStart(form) {
+    function doStart() {
 
-        APIUrl = form.urltoapi.value;
-        
+        //$("#idButStart").hide();
+
         var iDelay = 0;
         for (var i = 0; i < iBalls; i++) {
             iDelay = Math.ceil(Math.random() * iMaxPollTimer);

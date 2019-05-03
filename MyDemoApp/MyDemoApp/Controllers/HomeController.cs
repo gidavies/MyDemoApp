@@ -44,6 +44,11 @@ namespace MyDemoApp.Controllers
             }
         }
 
+        public IActionResult Webinars()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

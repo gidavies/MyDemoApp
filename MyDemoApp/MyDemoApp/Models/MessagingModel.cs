@@ -19,15 +19,11 @@ namespace MyDemoApp.Web.Models
 
         public void SendMessage()
         {
-            if (telemetryClient != null)
+            if (telemetryClient != null && SBMessage != null )
             {
                 var properties = SBIsQueue ? new Dictionary <string, string> {{"type", "queue"}, {"name", SBQueue}} : new Dictionary <string, string> {{"type", "topic"}, {"name", SBTopic}};
                 telemetryClient.TrackEvent("Messages", properties);
-            }
-            
-            if (SBMessage != null )
-            {
-                _ =  this.SBIsQueue ? SendMessageToQueue() : SendMessageToTopic();
+                _ =  SBIsQueue ? SendMessageToQueue() : SendMessageToTopic();
             }
         }
 

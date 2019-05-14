@@ -30,8 +30,7 @@ namespace MyDemoApp.UnitTests
         public void ColoursPageTest()
         {
             var controller = new HomeController(new TelemetryClient());
-            var coloursModel = new ColoursModel();
-            IActionResult result = controller.Colours(coloursModel);
+            IActionResult result = controller.Colours();
             Assert.AreEqual(null, controller.ViewData["Message"]);
         }
 

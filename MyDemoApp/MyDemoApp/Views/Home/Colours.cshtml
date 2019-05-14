@@ -3,8 +3,6 @@
     ViewData["Title"] = "Colours";
 }
 
-@model MyDemoApp.Web.Models.ColoursModel;
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <h1>Colours</h1>
@@ -17,33 +15,22 @@
 <div class="row">
     <div class="flex-column col-xl-auto groundedcard">
         <div class="gcontainer">
-            <h2 id="ColoursConfigCardHeading" class="h2">Configuration</h2>
-            <form asp-action="Colours" asp-controller="Home">
-                <label asp-for="ColoursAPIUrl">Colours API URL:</label>
-                <input asp-for="ColoursAPIUrl" placeholder="Colours API URL goes here..." />
-                <br />
-                <input type="submit" value="Update" />
-            </form>
-        </div>
-    </div>
-
-    <div class="flex-column col-xl-auto groundedcard">
-        <div class="gcontainer">
-            <h2 id="ColoursRunCardHeading" class="h2">Run</h2>
-            <button id="idButStart" onclick="doStart()">Start</button>
+            <h2 id="ColoursRunCardHeading" class="h2">Colours API Connection</h2>
+            <input label="Colours API Url" id="APIUrlValue" placeholder="Colours API URL goes here..." size=50 />
+            <br/>
+            <br/>
+            <button id="idButStart" onclick="doStart()">Get Colours</button>
             <p>
                 With thanks to <a href="https://github.com/markharrisonuk/Lab_Functions/blob/master/functions-1.md">Mark Harrison's excellent functions lab</a>.
             </p>
         </div>
     </div>
-
 </div>
 
 <script>
 
-    var rawURL = @Json.Serialize(Model.ColoursAPIUrl);
-    var APIUrl = decodeURIComponent(rawURL);
-    var iBalls = 500;
+    var API = "default";
+    var iBalls = 518;
     var iMaxPollTimer = 60000;
 
     function ColorTrigger(x) {
@@ -65,7 +52,7 @@
 
     function doStart() {
 
-        //$("#idButStart").hide();
+        APIUrl = document.getElementById("APIUrlValue").value; 
 
         var iDelay = 0;
         for (var i = 0; i < iBalls; i++) {

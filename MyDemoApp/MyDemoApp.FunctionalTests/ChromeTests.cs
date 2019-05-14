@@ -195,31 +195,11 @@ namespace MyDemoApp.FunctionalTests
         }
 
         [TestMethod]
-        public void ColoursPageConfigurationCardTest()
-        {
-            try
-            {
-                string expectedHeading = "Configuration";
-
-                driver = GetChromeDriver();
-                var webAppUrl = testContext.Properties["webAppUrl"].ToString() + "/Home/Colours";
-                driver.Navigate().GoToUrl(webAppUrl);
-                RemoteWebElement headingElement = (RemoteWebElement)driver.FindElementById("ColoursConfigCardHeading");
-
-                Assert.AreEqual(expectedHeading, headingElement.Text, "Expected heading to be '" + expectedHeading + "'");
-            }
-            finally
-            {
-                driver.Quit();
-            }
-        }
-
-        [TestMethod]
         public void ColoursPageRunCardTest()
         {
             try
             {
-                string expectedHeading = "Run";
+                string expectedHeading = "Colours API Connection";
 
                 driver = GetChromeDriver();
                 var webAppUrl = testContext.Properties["webAppUrl"].ToString() + "/Home/Colours";

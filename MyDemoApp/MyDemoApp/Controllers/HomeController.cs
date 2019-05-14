@@ -24,19 +24,15 @@ namespace MyDemoApp.Controllers
         {
             return View();
         }
-
+        
         public IActionResult About()
         {
             return View(new AboutModel());
         }
 
-        public IActionResult Colours(ColoursModel model)
+        public IActionResult Colours()
         {
-            ColoursModel coloursMod = new ColoursModel
-            {
-                ColoursAPIUrl = model.ColoursAPIUrl
-            };
-            return View(coloursMod);
+            return View();
         }
 
         public IActionResult Messaging(MessagingModel model)

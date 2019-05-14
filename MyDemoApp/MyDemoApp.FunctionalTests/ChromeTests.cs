@@ -164,7 +164,7 @@ namespace MyDemoApp.FunctionalTests
                 driver = GetChromeDriver();
                 var webAppUrl = testContext.Properties["webAppUrl"].ToString();
                 driver.Navigate().GoToUrl(webAppUrl);
-                RemoteWebElement headingElement = (RemoteWebElement)driver.FindElementById("WebinarsHeading");
+                RemoteWebElement headingElement = (RemoteWebElement)driver.FindElementById("WebinarsCardHeading");
 
                 Assert.AreEqual(expectedHeading, headingElement.Text, "Expected card heading to be '" + expectedHeading + "'");
             }

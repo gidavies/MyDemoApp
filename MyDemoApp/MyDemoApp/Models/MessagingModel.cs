@@ -25,7 +25,10 @@ namespace MyDemoApp.Web.Models
                 telemetryClient.TrackEvent("Messages", properties);
             }
             
-            _ =  this.SBIsQueue ? SendMessageToQueue() : SendMessageToTopic();
+            if (SBMessage != null )
+            {
+                _ =  this.SBIsQueue ? SendMessageToQueue() : SendMessageToTopic();
+            }
         }
 
         private async Task SendMessageToQueue()

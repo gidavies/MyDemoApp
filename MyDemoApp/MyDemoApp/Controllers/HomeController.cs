@@ -43,12 +43,12 @@ namespace MyDemoApp.Controllers
         {
             try
             {
-                new MessagingModel().SendMessage(model, telemetry);
+                model.telemetryClient = telemetry;
+                model.SendMessage();
                 return View();
             }
             catch (Exception)
             {
-
                 return RedirectToAction("Error");
             }
         }

@@ -15,30 +15,30 @@ namespace MyDemoApp.Web.Models
         public string SBTopic { get; set; }
         public string SBMessage { get; set; }
         public bool SBIsQueue { get; set; }
+        public TelemetryClient telemetryClient { get; set; }
 
-        public void SendMessage(MessagingModel model, TelemetryClient telemetry)
+        public void SendMessage()
         {
-            if (telemetry != null)
+            if (telemetryClient != null)
             {
-                var aiEventName = "Messages";
-                var properties = model.SBIsQueue ? new Dictionary <string, string> {{"type", "queue"}, {"name", model.SBQueue}} : new Dictionary <string, string> {{"type", "topic"}, {"name", model.SBTopic}};
-                telemetry.TrackEvent(aiEventName, properties);
+                var properties = SBIsQueue ? new Dictionary <string, string> {{"type", "queue"}, {"name", SBQueue}} : new Dictionary <string, string> {{"type", "topic"}, {"name", SBTopic}};
+                telemetryClient.TrackEvent("Messages", properties);
             }
             
-            _ =  model.SBIsQueue ? SendMessageToQueue(model) : SendMessageToTopic(model);
+            _ =  this.SBIsQueue ? SendMessageToQueue() : SendMessageToTopic();
         }
 
-        private async Task SendMessageToQueue(MessagingModel model)
+        private async Task SendMessageToQueue()
         {
-            IQueueClient queueClient = new QueueClient(model.SBConnString, model.SBQueue);
-            var message = new Message(Encoding.UTF8.GetBytes(model.SBMessage));
+            IQueueClient queueClient = new QueueClient(SBConnString, SBQueue);
+            var message = new Message(Encoding.UTF8.GetBytes(SBMessage));
             await queueClient.SendAsync(message);
         }
 
-        private async Task SendMessageToTopic(MessagingModel model)
+        private async Task SendMessageToTopic()
         {
-            ITopicClient topicClient = new TopicClient(model.SBConnString, model.SBTopic);
-            var message = new Message(Encoding.UTF8.GetBytes(model.SBMessage));
+            ITopicClient topicClient = new TopicClient(SBConnString, SBTopic);
+            var message = new Message(Encoding.UTF8.GetBytes(SBMessage));
             await topicClient.SendAsync(message);
         }
     }

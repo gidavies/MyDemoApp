@@ -18,9 +18,12 @@ namespace MyDemoApp.Web.Models
 
         public void SendMessage(MessagingModel model, TelemetryClient telemetry)
         {
-            var telemetryDetails = "Message sent to ";
-            telemetryDetails += model.SBIsQueue ? "queue: " + model.SBQueue : "topic: " + model.SBTopic;
-            telemetry.TrackEvent(telemetryDetails);
+            if (telemetry != null)
+            {
+                var aiEventName = "Messages";
+                var properties = model.SBIsQueue ? new Dictionary <string, string> {{"type", "queue"}, {"name", model.SBQueue}} : new Dictionary <string, string> {{"type", "topic"}, {"name", model.SBTopic}};
+                telemetry.TrackEvent(aiEventName, properties);
+            }
             
             _ =  model.SBIsQueue ? SendMessageToQueue(model) : SendMessageToTopic(model);
         }

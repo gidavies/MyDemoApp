@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.ApplicationInsights;
 using Microsoft.Azure.ServiceBus;
 
 namespace MyDemoApp.Web.Models
@@ -15,8 +16,12 @@ namespace MyDemoApp.Web.Models
         public string SBMessage { get; set; }
         public bool SBIsQueue { get; set; }
 
-        public void SendMessage(MessagingModel model)
+        public void SendMessage(MessagingModel model, TelemetryClient telemetry)
         {
+            var telemetryDetails = "Message sent to ";
+            telemetryDetails += model.SBIsQueue ? "queue: " + model.SBQueue : "topic: " + model.SBTopic;
+            telemetry.TrackEvent(telemetryDetails);
+            
             _ =  model.SBIsQueue ? SendMessageToQueue(model) : SendMessageToTopic(model);
         }
 

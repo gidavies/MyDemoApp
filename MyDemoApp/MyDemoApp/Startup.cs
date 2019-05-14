@@ -31,8 +31,9 @@ namespace MyDemoApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            // App Insights key set in ARM Template
+            services.AddApplicationInsightsTelemetry(Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

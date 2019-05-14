@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Mvc;
 using MyDemoApp.Models;
 using MyDemoApp.Web.Models;
@@ -11,6 +12,14 @@ namespace MyDemoApp.Controllers
 {
     public class HomeController : Controller
     {
+        private TelemetryClient telemetry;
+
+        // use constructor injection to get TelemetryClient instance
+        public HomeController(TelemetryClient telemetry)
+        {
+            this.telemetry = telemetry;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -34,7 +43,7 @@ namespace MyDemoApp.Controllers
         {
             try
             {
-                new MessagingModel().SendMessage(model);
+                new MessagingModel().SendMessage(model, telemetry);
                 return View();
             }
             catch (Exception)

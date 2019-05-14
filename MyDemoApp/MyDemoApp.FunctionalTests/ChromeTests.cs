@@ -8,6 +8,8 @@ namespace MyDemoApp.FunctionalTests
     [TestClass]
     public class ChromeTests
     {
+
+        #region Initialisation
         private static TestContext testContext;
         private RemoteWebDriver driver;
 
@@ -32,7 +34,9 @@ namespace MyDemoApp.FunctionalTests
                 return new ChromeDriver(options);
             }
         }
+        #endregion
 
+        #region Home Page Tests
         [TestMethod]
         public void HomePageTitleTest()
         {
@@ -71,6 +75,109 @@ namespace MyDemoApp.FunctionalTests
         }
 
         [TestMethod]
+        public void HomePageSlidesCardTest()
+        {
+            try
+            {
+                string expectedHeading = "Slides";
+
+                driver = GetChromeDriver();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString();
+                driver.Navigate().GoToUrl(webAppUrl);
+                RemoteWebElement headingElement = (RemoteWebElement)driver.FindElementById("SlidesCardHeading");
+
+                Assert.AreEqual(expectedHeading, headingElement.Text, "Expected card heading to be '" + expectedHeading + "'");
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
+
+        [TestMethod]
+        public void HomePageLabsCardTest()
+        {
+            try
+            {
+                string expectedHeading = "Hands on Labs";
+
+                driver = GetChromeDriver();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString();
+                driver.Navigate().GoToUrl(webAppUrl);
+                RemoteWebElement headingElement = (RemoteWebElement)driver.FindElementById("LabsCardHeading");
+
+                Assert.AreEqual(expectedHeading, headingElement.Text, "Expected card heading to be '" + expectedHeading + "'");
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
+
+        [TestMethod]
+        public void HomePageTrainingCardTest()
+        {
+            try
+            {
+                string expectedHeading = "Azure Training";
+
+                driver = GetChromeDriver();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString();
+                driver.Navigate().GoToUrl(webAppUrl);
+                RemoteWebElement headingElement = (RemoteWebElement)driver.FindElementById("TrainingCardHeading");
+
+                Assert.AreEqual(expectedHeading, headingElement.Text, "Expected card heading to be '" + expectedHeading + "'");
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
+
+        [TestMethod]
+        public void HomePageBlogsCardTest()
+        {
+            try
+            {
+                string expectedHeading = "Blog Posts";
+
+                driver = GetChromeDriver();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString();
+                driver.Navigate().GoToUrl(webAppUrl);
+                RemoteWebElement headingElement = (RemoteWebElement)driver.FindElementById("BlogCardHeading");
+
+                Assert.AreEqual(expectedHeading, headingElement.Text, "Expected card heading to be '" + expectedHeading + "'");
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
+
+        [TestMethod]
+        public void HomePageWebinarsCardTest()
+        {
+            try
+            {
+                string expectedHeading = "Webinars";
+
+                driver = GetChromeDriver();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString();
+                driver.Navigate().GoToUrl(webAppUrl);
+                RemoteWebElement headingElement = (RemoteWebElement)driver.FindElementById("WebinarsHeading");
+
+                Assert.AreEqual(expectedHeading, headingElement.Text, "Expected card heading to be '" + expectedHeading + "'");
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
+
+        #endregion
+
+        #region Colours Page Tests
+        [TestMethod]
         public void ColoursPageTitleTest()
         {
             try
@@ -87,6 +194,49 @@ namespace MyDemoApp.FunctionalTests
             }
         }
 
+        [TestMethod]
+        public void ColoursPageConfigurationCardTest()
+        {
+            try
+            {
+                string expectedHeading = "Configuration";
+
+                driver = GetChromeDriver();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString() + "/Home/Colours";
+                driver.Navigate().GoToUrl(webAppUrl);
+                RemoteWebElement headingElement = (RemoteWebElement)driver.FindElementById("ColoursConfigCardHeading");
+
+                Assert.AreEqual(expectedHeading, headingElement.Text, "Expected heading to be '" + expectedHeading + "'");
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
+
+        [TestMethod]
+        public void ColoursPageRunCardTest()
+        {
+            try
+            {
+                string expectedHeading = "Run";
+
+                driver = GetChromeDriver();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString() + "/Home/Colours";
+                driver.Navigate().GoToUrl(webAppUrl);
+                RemoteWebElement headingElement = (RemoteWebElement)driver.FindElementById("ColoursRunCardHeading");
+
+                Assert.AreEqual(expectedHeading, headingElement.Text, "Expected heading to be '" + expectedHeading + "'");
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
+
+        #endregion
+
+        #region Messaging Page Tests
         [TestMethod]
         public void MessagingPageTitleTest()
         {
@@ -105,6 +255,49 @@ namespace MyDemoApp.FunctionalTests
         }
 
         [TestMethod]
+        public void MessagingPageQueuesCardTest()
+        {
+            try
+            {
+                string expectedHeading = "Queues";
+
+                driver = GetChromeDriver();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString() + "/Home/Messaging";
+                driver.Navigate().GoToUrl(webAppUrl);
+                RemoteWebElement headingElement = (RemoteWebElement)driver.FindElementById("QueuesCardHeading");
+
+                Assert.AreEqual(expectedHeading, headingElement.Text, "Expected heading to be '" + expectedHeading + "'");
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
+
+        [TestMethod]
+        public void MessagingPageTopicsCardTest()
+        {
+            try
+            {
+                string expectedHeading = "Topics";
+
+                driver = GetChromeDriver();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString() + "/Home/Messaging";
+                driver.Navigate().GoToUrl(webAppUrl);
+                RemoteWebElement headingElement = (RemoteWebElement)driver.FindElementById("TopicsCardHeading");
+
+                Assert.AreEqual(expectedHeading, headingElement.Text, "Expected heading to be '" + expectedHeading + "'");
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
+
+        #endregion
+
+        #region About Page Tests
+        [TestMethod]
         public void AboutPageTitleTest()
         {
             try
@@ -120,5 +313,66 @@ namespace MyDemoApp.FunctionalTests
                 driver.Quit();
             }
         }
+
+        [TestMethod]
+        public void AboutPageMeCardTest()
+        {
+            try
+            {
+                string expectedHeading = "Me";
+
+                driver = GetChromeDriver();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString() + "/Home/About";
+                driver.Navigate().GoToUrl(webAppUrl);
+                RemoteWebElement headingElement = (RemoteWebElement)driver.FindElementById("MeCardHeading");
+
+                Assert.AreEqual(expectedHeading, headingElement.Text, "Expected heading to be '" + expectedHeading + "'");
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
+
+        [TestMethod]
+        public void AboutPageStatusCardTest()
+        {
+            try
+            {
+                string expectedHeading = "Pipeline status";
+
+                driver = GetChromeDriver();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString() + "/Home/About";
+                driver.Navigate().GoToUrl(webAppUrl);
+                RemoteWebElement headingElement = (RemoteWebElement)driver.FindElementById("StatusCardHeading");
+
+                Assert.AreEqual(expectedHeading, headingElement.Text, "Expected heading to be '" + expectedHeading + "'");
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
+
+        [TestMethod]
+        public void AboutPageAppCardTest()
+        {
+            try
+            {
+                string expectedHeading = "This app";
+
+                driver = GetChromeDriver();
+                var webAppUrl = testContext.Properties["webAppUrl"].ToString() + "/Home/About";
+                driver.Navigate().GoToUrl(webAppUrl);
+                RemoteWebElement headingElement = (RemoteWebElement)driver.FindElementById("AppCardHeading");
+
+                Assert.AreEqual(expectedHeading, headingElement.Text, "Expected heading to be '" + expectedHeading + "'");
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
+        #endregion
     }
 }
